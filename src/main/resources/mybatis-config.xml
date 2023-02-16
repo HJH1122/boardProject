@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+    	<!-- 알리아스를 지정해서 맵퍼 파라미터타입에 풀네임 대신 알리아스를 쓴다  -->
+        <typeAlias type="kr.co.boardProject.dto.BoardDto" alias="board"></typeAlias>
+<!--        <typeAlias type="kr.co.boardProject.dto.CommentDto" alias="comment"></typeAlias>-->
+    </typeAliases>
+</configuration>
