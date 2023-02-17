@@ -5,7 +5,6 @@
     
     
     
-    
 drop table if exists board_table;
 create table board_table(
     id bigint primary key auto_increment,
