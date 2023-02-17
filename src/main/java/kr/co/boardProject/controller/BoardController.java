@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.boardProject.dto.BoardDto;
+import kr.co.boardProject.dto.PageDto;
 import kr.co.boardProject.service.BoardService;
 import lombok.RequiredArgsConstructor;
 
@@ -32,7 +33,7 @@ public class BoardController {
 		int saveResult = boardService.save(boardDto);
 		
 		if(saveResult > 0) {
-			return "redirect:/board/";
+			return "redirect:/board/paging";
 		}
 		else {
 			return "save";
@@ -48,12 +49,13 @@ public class BoardController {
 	}
 	
 	@GetMapping
-	public String findById(@RequestParam("id") Long id, Model model) {
+	public String findById(@RequestParam("id") Long id, @RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
 		
 		boardService.updateHits(id);
 		
 		BoardDto boardDto = boardService.findById(id);
 		model.addAttribute("board", boardDto);
+		model.addAttribute("page", page);
 		
 		return "detail";
 	}
@@ -85,6 +87,22 @@ public class BoardController {
 		
 		return "detail";
 		
+	}
+	
+	// /board/paging?page=2
+	// 처음 페이지 요청은 1페이지를 보여줌
+	@GetMapping("/paging")
+	public String paging(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		
+		System.out.println("page=" + page);
+		//해당 페이지에서 보여줄 글 목록
+		List<BoardDto> pagingList = boardService.pagingList(page);
+		System.out.println("pagingList=" + pagingList);
+		PageDto pageDto = boardService.pagingParam(page);
+		model.addAttribute("boardList",pagingList);
+		model.addAttribute("paging",pageDto);
+		
+		return "paging";
 	}
 	
 	

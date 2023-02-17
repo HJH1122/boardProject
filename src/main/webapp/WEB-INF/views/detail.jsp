@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Detail</title>
@@ -19,12 +20,13 @@
             <th>내용</th>
             <td>${board.boardContents}</td>
         </tr>
+        <tr>
             <th>작성자</th>
             <td>${board.boardWriter}</td>
         </tr>
         <tr>
             <th>날짜</th>
-            <td>${board.boardCreatedDate}</td>
+            <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.boardCreatedDate}"></fmt:formatDate></td>
         </tr>
         <tr>
             <th>조회수</th>
@@ -34,19 +36,20 @@
     <button onclick="listFn()">목록</button>
     <button onclick="updateFn()">수정</button>
     <button onclick="deleteFn()">삭제</button>
+
 </body>
-<script>
+<script type="text/javascript">
 	const listFn = () => {
-	    
-	    location.href = "/board/";
-	}
-	const updateFn = () => {
-	    const id = '${board.id}';
-	    location.href = "/board/update?id=" + id;
-	}
-	const deleteFn = () => {
-	    const id = '${board.id}';
-	    location.href = "/board/delete?id=" + id;
-	}
+        const page = '${page}';
+        location.href = "/board/paging?page=" + page;
+    }
+    const updateFn = () => {
+        const id = '${board.id}';
+        location.href = "/board/update?id=" + id;
+    }
+    const deleteFn = () => {
+        const id = '${board.id}';
+        location.href = "/board/delete?id=" + id;
+    }
 </script>
 </html>

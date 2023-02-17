@@ -1,6 +1,7 @@
 package kr.co.boardProject.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -45,6 +46,16 @@ public class BoardRepository {
 		
 		sql.update("Board.update",boardDto);
 		
+	}
+
+	public List<BoardDto> pagingList(Map<String, Integer> pagingParams) {
+		
+		return sql.selectList("Board.pagingList",pagingParams);
+	}
+
+	public int boardCount() {
+		
+		return sql.selectOne("Board.boardCount");
 	}
 
 	
