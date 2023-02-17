@@ -1,3 +1,4 @@
+// mysql 계정 생성
     create database db_codingrecipe;
     create user user_codingrecipe@localhost identified by '1234';
     grant all privileges on db_codingrecipe.* to user_codingrecipe@localhost;
