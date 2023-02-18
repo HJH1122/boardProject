@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.boardProject.dto.BoardDto;
+import kr.co.boardProject.dto.CommentDto;
 import kr.co.boardProject.dto.PageDto;
 import kr.co.boardProject.service.BoardService;
+import kr.co.boardProject.service.CommentService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -21,6 +23,8 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 	
 	private final BoardService boardService;
+	
+	private final CommentService commentService;
 	
 	@GetMapping("/save")
 	public String saveForm() {
@@ -56,6 +60,9 @@ public class BoardController {
 		BoardDto boardDto = boardService.findById(id);
 		model.addAttribute("board", boardDto);
 		model.addAttribute("page", page);
+		
+		List<CommentDto> commentDtoList = commentService.findAll(id);
+        model.addAttribute("commentList", commentDtoList);
 		
 		return "detail";
 	}
@@ -104,6 +111,7 @@ public class BoardController {
 		
 		return "paging";
 	}
+	
 	
 	
 	
