@@ -1,13 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>index</title>
 </head>
 <body>
-    <h2>hello spring framework!!</h2>
-    <a href="/board/save">글작성</a>
-    
-    <a href="/board/paging">글목록</a>
-    
+<jsp:include page="layout/header.jsp" flush="false"></jsp:include>
+ <div class="container" id="detail">
+    <h2>홈 화면 입니다</h2>
+   
+ </div>
 </body>
 </html>

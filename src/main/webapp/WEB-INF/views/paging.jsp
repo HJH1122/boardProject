@@ -6,10 +6,12 @@
     <title>paging</title>
 </head>
 <body>
-<div>
-    <table>
+<jsp:include page="layout/header.jsp" flush="false"></jsp:include>
+ <div class="container" id="detail">
+
+    <table class="table table-hover">
         <tr>
-            <th>id</th>
+            <th>글번호</th>
             <th>제목</th>
             <th>작성자</th>
             <th>날짜</th>
@@ -27,8 +29,8 @@
             </tr>
         </c:forEach>
     </table>
-</div>
-<div>
+
+
         <c:choose>
             <%-- 현재 페이지가 1페이지면 이전 글자만 보여줌 --%>
             <c:when test="${paging.page<=1}">
@@ -62,7 +64,14 @@
                     <a href="/board/paging?page=${paging.page+1}">[다음]</a>
             </c:otherwise>
         </c:choose>
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<a href="/board/save">글작성</a>
-</div>
+        
+        <button onclick="save()" style="float: right;">글작성</button>
+ </div>
 </body>
+<script type="text/javascript">
+	const save = () => {
+        
+        location.href = "/board/save";
+    }
+</script>
 </html>

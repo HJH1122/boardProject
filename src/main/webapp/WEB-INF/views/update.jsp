@@ -4,14 +4,17 @@
     <title>Update</title>
 </head>
 <body>
+<jsp:include page="layout/header.jsp" flush="false"></jsp:include>
+ <div class="container" id="detail">
     <form action="/board/update" method="post" name="updateForm">
-        <input type="hidden" name="id" value="${board.id}" readonly>
-        <input type="text" name="boardWriter" value="${board.boardWriter}" readonly>
-        <input type="text" name="boardPass" id="boardPass" placeholder="비밀번호">
-        <input type="text" name="boardTitle" value="${board.boardTitle}">
+        <input type="hidden" name="id" value="${board.id}" readonly><br><br>
+        <input type="text" name="boardWriter" value="${board.boardWriter}" readonly><br><br>
+        <input type="text" name="boardPass" id="boardPass" placeholder="비밀번호"><br><br>
+        <input type="text" name="boardTitle" value="${board.boardTitle}"><br><br>
         <textarea name="boardContents" cols="30" rows="10">${board.boardContents}</textarea>
         <input type="button" value="수정" onclick="updateReqFn()">
     </form>
+ </div>
 </body>
 <script>
     const updateReqFn = () => {

@@ -6,9 +6,11 @@
     <title>Detail</title>
 </head>
 <body>
-	<table>
+<jsp:include page="layout/header.jsp" flush="false"></jsp:include>
+  <div class="container" id="detail">
+    <table class="table table-hover">
         <tr>
-            <th>id</th>
+            <th>글번호</th>
             <td>${board.id}</td>
         </tr>
         <tr>
@@ -36,7 +38,7 @@
     <button onclick="listFn()">목록</button>
     <button onclick="updateFn()">수정</button>
     <button onclick="deleteFn()">삭제</button>
-
+  </div>
 </body>
 <script type="text/javascript">
 	const listFn = () => {
